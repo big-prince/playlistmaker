@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login/Signup Page</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #c7c7c9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .login-container {
+        position: relative;
+        background-color: #fff; /* Make the card white */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        width: 800px;
+        display: flex;
+        flex-direction: row; /* Divide the card into two parts */
+        color: #2c3e50; /* Set text color to a dark shade */
+        /* make the card bigger in breath */
+        transform: scale(1.08);
+      }
+
+      /* Left part (brand and information) */
+      .left-card {
+        flex: 1; /* Take up 50% of the width */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+      }
+
+      .brand-container {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+        background-color: #3498db00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .brand-logo img {
+        width: 80%;
+        height: 80%;
+        object-fit: cover;
+      }
+
+      .brand-name {
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: -12px;
+      }
+
+      /* Right part (picture) */
+      .right-card {
+        flex: 1; /* Take up 50% of the width */
+        overflow: hidden;
+      }
+
+      .picture-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* incree size to fill the card */
+        transform: scale(1.05);
+      }
+
+      /* Centered mini card inside the left part */
+      .mini-card {
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        /* reduce size of the card and its elements */
+        transform: scale(0.9);
+        transform-origin: top;
+      }
+
+      .welcome-message {
+        margin-top: 60px;
+        margin-bottom: 20px;
+        font-size: 12px;
+      }
+
+      .welcome-message2 {
+        margin-top: 60px;
+        margin-bottom: 20px;
+        font-size: 12px;
+      }
+
+      .google-auth-btn {
+        width: 100%;
+        padding: 7px;
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #bbbdbd;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 10px;
+        margin-bottom: 20px;
+      }
+
+      .or-text {
+        margin-bottom: 25px;
+        font-size: 11px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .or-text:before {
+        content: "or";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 0 10px;
+      }
+
+      /* Add underline design to the or-text */
+      .or-text:after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: #050505;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+
+      /* Form styling with underline design */
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 10px;
+        color: #000000;
+        /* align left */
+        text-align: left;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 0px;
+        margin-top: -4rem;
+        border: none;
+        border-bottom: 1px solid rgb(158, 158, 158);
+        background-color: transparent;
+        color: #2c3e50;
+        transition: border-bottom-color 0.3s ease-in-out;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-bottom-color: rgb(0, 0, 0);
+      }
+
+      .form-group button {
+        width: 100%;
+        padding: 10px;
+        background-color: #000000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .form-group button:hover {
+        background-color: #05381a;
+      }
+
+      /* Small "Forgot Password?" link */
+      .forgot-password {
+        font-size: 9px;
+        margin-bottom: 10px;
+        text-decoration: none;
+        /* align to right of the form */
+        text-align: right;
+        margin-top: -5px;
+        margin-bottom: 2rem;
+      }
+
+      /* Small signup link */
+      .signup-link {
+        font-size: 9px;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <!-- Left Part (Brand and Information) -->
+      <div class="left-card">
+        <div class="brand-container">
+          <div class="brand-logo">
+            <img src="playlist.png" alt="Brand Logo" />
+          </div>
+          <div class="brand-name" style="padding-top: 14px">Musico</div>
+        </div>
+
+        <!-- Centered Mini Card -->
+        <div class="mini-card">
+          <div class="welcome-message">
+            <h1>Welcome Back!</h1>
+            <p style="margin-top: -10px">Please enter your details</p>
+          </div>
+          <div class="welcome-message2" style="display: none">
+            <h1>Welcome!</h1>
+            <p style="margin-top: -10px">Join us</p>
+          </div>
+
+          <button class="google-auth-btn">
+            <img
+              src="google 2.png"
+              alt=""
+              style="
+                width: 8%;
+                padding: 0px;
+                margin-right: 5px;
+                margin-bottom: -4px;
+              "
+            />Continue with Google
+          </button>
+
+          <div class="or-text"></div>
+
+          <div class="login-form">
+            <!-- Form with Underline Design -->
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required />
+            </div>
+
+            <!-- Small "Forgot Password?" link -->
+            <div class="forgot-password"><a href="#">Forgot Password</a></div>
+
+            <!-- Login Button -->
+            <div class="form-group">
+              <button type="submit" class="login-btn">Log in</button>
+            </div>
+            <!-- Small Signup Link -->
+            <div class="signup-link">
+              <p>Dont have an account?</p>
+              <a href="#" class="signup-linker">Sign up</a>
+            </div>
+          </div>
+
+          <div class="signup-form" style="display: none">
+            <!-- Form with Underline Design -->
+            <div class="form-group">
+              <label for="username">Name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input
+                type="text"
+                id="signup-username"
+                name="username"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                id="signup-password"
+                name="password"
+                required
+              />
+            </div>
+
+            <!-- Login Button -->
+            <div class="form-group">
+              <button type="submit" class="signup-btn">Sign up</button>
+            </div>
+            <!-- Small Signup Link -->
+            <div class="signup-link">
+              <p>Already have an account?</p>
+              <a href="#" class="login-linker">Log in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Part (Picture) -->
+      <div class="right-card">
+        <div class="picture-section">
+          <img src="wallpaperflare.com_wallpaper (8).jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    //get the html forms for login and signup toggle
+    const loginForm = document.querySelector(".login-form");
+    const signupForm = document.querySelector(".signup-form");
+    const welcomeMessage = document.querySelector(".welcome-message");
+    const welcomeMessage2 = document.querySelector(".welcome-message2");
+    //get login and signup buttons
+    const loginBtn = document.querySelector(".login-btn");
+    const signupBtn = document.querySelector(".signup-btn");
+    //get signup and login links
+    const signupLink = document.querySelector(".signup-linker");
+    const loginLink = document.querySelector(".login-linker");
+
+    //add eventlistener to links to toggle form display
+    signupLink.addEventListener("click", () => {
+      loginForm.style.display = "none";
+      signupForm.style.display = "block";
+      welcomeMessage.style.display = "none";
+      welcomeMessage2.style.display = "block";
+    });
+
+    loginLink.addEventListener("click", () => {
+      loginForm.style.display = "block";
+      signupForm.style.display = "none";
+      welcomeMessage.style.display = "block";
+      welcomeMessage2.style.display = "none";
+    });
+
+    //get form inputs
+    const username = document.querySelector("#username");
+    const password = document.querySelector("#password");
+    const signupUsername = document.querySelector("#signup-username");
+    const signupPassword = document.querySelector("#signup-password");
+    const name = document.querySelector("#name");
+
+    //add eventlistener to signup button
+    signupBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      //get form values
+      const usernameValue = signupUsername.value;
+      const passwordValue = signupPassword.value;
+      const nameValue = name.value;
+
+      console.log(usernameValue, passwordValue, nameValue);
+      //check if form values are empty
+      if (usernameValue === "" || passwordValue === "" || nameValue === "") {
+        alert("Please fill in all fields");
+      }
+      //send to backend
+      const url = "/signup";
+      const form = {
+        username: usernameValue,
+        password: passwordValue,
+        name: nameValue,
+      };
+      const response = fetch(url, {
+        method: "POST",
+        body: JSON.stringify(form),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response;
+
+      console.log(data);
+      if (data.status === "success" || data.message === "Signup successful") {
+        window.location.href = "/home";
+      } else {
+        alert(data.message);
+      }
+    });
+
+    //login button eventlistener
+    loginBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      //get form values
+      const usernameValue = username.value;
+      const passwordValue = password.value;
+
+      console.log(usernameValue, passwordValue);
+      //check if form values are empty
+      if (usernameValue === "" || passwordValue === "") {
+        alert("Please fill in all fields");
+      }
+      //send to backend
+      const url = "/login";
+      const form = {
+        username: usernameValue,
+        password: passwordValue,
+      };
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(form),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data) {
+        if (data.message === "Login successful") {
+          window.location.href = "/home";
+        }
+        //if the message is account locked
+        if (data.message === "Account locked") {
+          alert("Invalid Username");
+        }
+
+        //password
+        if (data.message === "Invalid password") {
+          alert("Invalid Password");
+        }
+      }
+    });
+  </script>
+</html>
